@@ -73,7 +73,7 @@ axios.interceptors.response.use(function (response) {
     return response.data
   }, function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
-    if(err.response.status === 401){
+    if(error.response.status === 401){
         showToast('您的登录信息过期，请重新登录')
         // 清除缓存de数据
         localStorage.removeItem('userMsg')
@@ -83,5 +83,5 @@ axios.interceptors.response.use(function (response) {
        }, 1600)
     }
     // 对响应错误做点什么
-    return Promise.reject(error);
+    return Promise.reject(error)
   });
